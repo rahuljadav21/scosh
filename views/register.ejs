@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form action="/register" method="post" enctype="multipart/form-data">
+     <div style="display: flex;
+     flex-direction: column;
+     flex-wrap: nowrap;
+     align-content: center;
+     align-items: center;">
+     <label for="username">Name</label> <input type="text" id="username" name="username" placeholder="Your Name">
+     <label for="joiningYear">Session</label> <input type="text" id="joiningYear" name="session" placeholder="Ex. 2020">
+     <label for="">Image</label> <input  type="file" id="image" name="image" >
+     <label for="email">Email</label> <input type="email" id="email" name="email" placeholder="Your Email">
+     <label for="linkedIn">LinkedIn</label> <input type="text" id="linkedIn" name="linkedIn" placeholder="LinkedIn link">
+     <label for="insta">Insta</label> <input type="text" id="insta" name="insta" placeholder="Insta Link">
+     <label for="facebook">Facebook</label> <input type="text" id="facebook" name="facebook" placeholder="Facebook Link">
+     <label for="password">password</label> <input type="password" id="password" name="password">
+     <label for="bio">Bio</label>
+     <textarea name="bio" id="bio" cols="30" rows="10" placeholder="About your self"> </textarea> 
+     
+     <button type="submit">Register</button>
+    </div>
+    </form>
+</body>
+</html>
