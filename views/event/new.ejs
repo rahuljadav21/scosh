@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+</head>
+<body>
+    <h2>Create Event</h2>
+
+    <form action="/events" method="post">
+        <div style="display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+        justify-content: flex-start;">
+    <label for="name">Name :</label><input type="text" name="name" id="name" required>
+    <label for="vanue">Vanue :</label><input type="text" name="vanue" id="vanue" required>
+    <label for="date">Date :</label><input type="date" name="date" id="date" required>
+    <label for="author">Author :</label><input type="text" name="author" id="author" required>
+    <label for="register">Register Link :</label><input type="text" name="register" id="register" required>
+    <button type="submit">Create</button>
+</div>
+    </form>
+   
+    
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Event</title>
+</head>
+<body>
+    <h2>Update Event</h2>
+
+    <form action="/events/edit/<%=event._id%>?_method=put" method="post">
+        <div style="display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+        justify-content: flex-start;">
+    <label for="name"></label>Name :<input value="<%=event.name%>" type="text" name="name" id="name" required>
+    <label for="vanue"></label>Vanue :<input value="<%=event.vanue %>" type="text" name="vanue" id="vanue" required>
+    <label for="date"></label>Date :<input value="<%=event.date %>"type="Date" name="date" id="date" required>
+    <label for="author"></label>author<input value="<%=event.author %>" type="text" name="author" id="author" required>
+    <label for="register"></label>Register here :<input type="text" value="<%=event.register %>" name="register" id="register" required>
+    <button type="submit">Edit</button>
+</div>
+    </form>
+   
+    
+</body>
+</html>

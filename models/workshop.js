@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const User = require('./user')
 
 const WorkShopSchema = new Schema({
     name: {
@@ -19,16 +18,14 @@ const WorkShopSchema = new Schema({
         type: String,
         required: true
     },
-    time: {
+    date :{
         type: Date,
-        default: Date.now,
-    },
-    registered: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ]
+        required:true,
+     },
+    register :{
+        type : String,
+        required:true
+     }
 })
 
 

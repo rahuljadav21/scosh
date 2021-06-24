@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Workshop</title>
+</head>
+<body>
+    <h2>Edit Workshop</h2>
+
+    <form action="/workshops/edit/<%=workshop._id%>?_method=put" method="post">
+        <div style="display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+        justify-content: flex-start;">
+    <label for="name">Name :</label><input value="<%=workshop.name%>" type="text" name="name" id="name" required>
+    <label for="vanue">Vanue</label><input value="<%=workshop.vanue%>" type="text" name="vanue" id="vanue" required
+    <label for="date">Date :</label><input value="<%=workshop.date%>" type="date" name="date" id="date" required>
+    <label for="author">Author :</label><input value="<%=workshop.author%>" type="text" name="author" id="author">
+    <label for="description">Description :</label><textarea name="description" id="description" cols="30" rows="10"><%=workshop.description%></textarea>
+    <label for="register"></label>Register Link:<input value="<%=workshop.register%>" type="text" name="register" id="register">
+    <button type="submit">Edit</button>
+</div>
+    </form>
+   
+    
+</body>
+</html>

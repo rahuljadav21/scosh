@@ -9,11 +9,11 @@ const upload =  multer({ storage });
 const { cloudinary } = require("../cloudinary");
 
 router.get('/register',(req, res) => {
-    res.render('register');
+    res.render('user/register');
 })
 router.get('/profile',isLoggedIn,async(req,res)=>{
     const user = await req.user
-    res.render('profile',{user})
+    res.render('user/profile',{user})
 })
 
 router.post('/register',upload.single('image'),async(req, res, next) => {
@@ -38,7 +38,7 @@ router.post('/register',upload.single('image'),async(req, res, next) => {
 })
 
 router.get('/login',(req, res) => {
-    res.render('login');
+    res.render('user/login');
 })
 
 router.post('/login',passport.authenticate('local', {  failureRedirect: '/' }),async(req, res) => {
@@ -57,14 +57,13 @@ router.get('/logout',isLoggedIn,async(req, res) => {
 router.get('/edit/:id',isLoggedIn,async(req,res)=>{
     const user = await req.user;
     const {id} = req.params
-    res.render('edit',{user,id})
+    res.render('user/edit',{user,id})
 })
 router.put('/edit/:id',upload.single('image'),async(req,res)=>{
     try{     
     const {id} = req.params;
     const {username,session,linkedIn,insta,facebook,email,bio} = req.body;
     const user = await User.findByIdAndUpdate(id,{username,session,linkedIn,insta,facebook,email,bio});
-    
     if(req.file){
         await cloudinary.uploader.destroy(user.image);
         user.image = {

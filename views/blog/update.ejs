@@ -19,7 +19,7 @@
     <label for="title"></label>Title :<input value="<%= blog.title %>" type="text" name="title" id="title">
     <label for="content"></label>Content :  <textarea style="margin: 0px; height: 348px; width: 601px;" name="content" id="content" cols="30" rows="10"><%= blog.content %> </textarea>
     <label for="author"></label>author<input  value="<%= blog.author %>" type="text" name="author" id="author">
-    <label for="Images">Images</label><input type="file" name="images" id="images">
+    <label for="Images">Images</label><input type="file" name="images" id="images" multiple>
     <% if(blog.images){ %> 
     <div >
         <% blog.images.forEach(function(img, i) { %>

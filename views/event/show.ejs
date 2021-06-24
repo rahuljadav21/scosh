@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= event.name  %> </title>
+</head>
+<body>
+    <h1><%= event.name %> <a href="/events">All events</a> </h1>
+    <h3>At <%=event.vanue%> </h3>
+    <h3> <%= event.date %>  </h3>    
+    <h4>- By <%=event.author%> </h4> 
+    <h4><a href="<%=event.register%>" target="_blank">Register</a></h4>
+    <a href="/events/edit/<%=event._id%> ">Edit</a>
+    <form action="/events/delete/<%=event._id%>?_method=delete" method="post">
+    <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const User = require('./user')
 
 const EventSchema = new Schema({
     name :{
@@ -15,16 +14,15 @@ const EventSchema = new Schema({
         type : String,
         required:true
     },
-    time :{
+    date :{
        type: Date,
-       default: Date.now,
+       required:true,
     },
-    registered :[
-        {
-           type : Schema.Types.ObjectId,
-            ref: 'User'
+    register :{
+           type : String,
+           required:true
         }
-    ]
+    
    })
    
    
