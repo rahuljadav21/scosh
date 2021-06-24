@@ -28,7 +28,7 @@ router.post('/register',upload.single('image'),async(req, res, next) => {
         const registeredUser = await User.register(user,password);
         req.login(registeredUser, err => {
             if (err) return next(err);
-            res.redirect('/');
+            res.redirect('/user/profile');
         })
     } 
     catch (e) {
@@ -43,7 +43,7 @@ router.get('/login',(req, res) => {
 
 router.post('/login',passport.authenticate('local', {  failureRedirect: '/' }),async(req, res) => {
     
-    const redirectUrl = req.session.returnTo || '/profile';
+    const redirectUrl = req.session.returnTo || '/user/profile';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 })
@@ -73,10 +73,10 @@ router.put('/edit/:id',upload.single('image'),async(req,res)=>{
         }
      }
     await user.save();
-    res.redirect('/profile')
+    res.redirect('/user/profile')
 } catch (e) {
     console.log(e)
-    res.redirect('/profile');
+    res.redirect('/user/profile');
 }
 })
 router.delete('/delete/:id',isLoggedIn,async(req,res)=>{

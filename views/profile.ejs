@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Profile</h1> <a href="/">Home</a>
- <a href="/logout">logout</a>
+ <a href="/user/logout">logout</a>
 <div style="display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -22,9 +22,9 @@
     <h4>facebook : <%=user.facebook%> </h4>
     <h4>email : <%=user.email%> </h4>
     <h4>bio : <%=user.bio%> </h4>
-    <p><a href="/edit/<%=user._id%> ">Edit</a></p>
+    <p><a href="/user/edit/<%=user._id%> ">Edit</a></p>
 
-    <form action="/delete/<%=user._id%>?_method=delete" method="post">
+    <form action="/user/delete/<%=user._id%>?_method=delete" method="post">
     <button type="submit">Delete Account</button>
     </form>
 

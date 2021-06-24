@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Edit</h1>
-    <form action="/edit/<%=id%>?_method=PUT" method="post" enctype="multipart/form-data">
+    <form action="/user/edit/<%=id%>?_method=PUT" method="post" >
      <div style="display: flex;
      flex-direction: column;
      flex-wrap: nowrap;
@@ -16,7 +16,7 @@
      align-items: center;">
      <label for="username">Name</label> <input value="<%=user.username%>" type="text" id="username" name="username" placeholder="Your Neme">
      <label for="joiningYear">Session</label> <input value="<%=user.session%>" type="text" id="joiningYear" name="session" placeholder="Ex. 2020">
-     <label for="image">Image</label> <input type="file" id="image" name="image" >
+     <label for="image">Image</label> <input type="file" id="image" name="image" multiple >
      <label for="email">Email</label> <input value="<%=user.email%>" type="email" id="email" name="email" placeholder="Your Email">
      <label for="linkedIn">LinkedIn</label> <input value="<%=user.linkedIn%>" type="text" id="linkedIn" name="linkedIn" placeholder="LinkedIn link">
      <label for="insta">Insta</label> <input value="<%=user.insta%>" type="text" id="insta" name="insta" placeholder="Insta Link">

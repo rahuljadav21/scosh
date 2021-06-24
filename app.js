@@ -11,6 +11,7 @@ const path = require('path');
 const MongoStore  = require('connect-mongo');
 const User = require('./models/user')
 const userRoutes = require('./routes/user');
+const blogRoutes = require('./routes/blogs');
 const PORT = process.env.PORT||4000
 //load config
 dotenv.config({path: './config/config.env'})
@@ -60,9 +61,11 @@ passport.deserializeUser(User.deserializeUser());
 
 //routes
 app.get('/',(req,res)=>{
+    
     res.render('home')
 })
-app.use('/',userRoutes);
+app.use('/user',userRoutes);
+app.use('/blogs',blogRoutes)
 
 app.listen(PORT,()=>{
     console.log(`Listening on port ${PORT}`)

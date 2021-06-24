@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+</head>
+<body>
+    <h1>All Blogs</h1>
+    <a href="/blogs/new">Create</a>
+    <a href="/">Home</a>
+    
+    <ul>
+     <% for(blog of blogs){ %> 
+        <li><a href="/blogs/<%=blog._id%>"><%= blog.title %></a></li>
+     <% } %>    
+    </ul>
+</body>
+</html>
