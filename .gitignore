@@ -1,7 +1,8 @@
 /node_modules
+.gitignore
 /.pnp
 /.pnp.js
-.env
-/views
+*.env
+views/
 
 /config/config.env
