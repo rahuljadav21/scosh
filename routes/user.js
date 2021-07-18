@@ -8,6 +8,7 @@ const { storage } = require('../cloudinary');
 const upload =  multer({ storage });
 const { cloudinary } = require("../cloudinary");
 
+
 router.get('/register',(req, res) => {
     res.render('user/register');
 })
@@ -21,45 +22,48 @@ router.post('/register',upload.single('image'),async(req, res, next) => {
         {
         const {username,session,linkedIn,insta,facebook,email,bio,password} = req.body;
         const user = new User({username,session,linkedIn,insta,facebook,email,bio});
+        if(req.file){
         user.image = {
             url:req.file.path,
             filename:req.file.filename
-        }
+        }}
         const registeredUser = await User.register(user,password);
         req.login(registeredUser, err => {
             if (err) return next(err);
-            res.redirect('/user/profile');
+            res.send(user)
         })
     } 
     catch (e) {
-        console.log(e)
-        res.redirect('register');
+       res.send(e)
     }
 })
 
-router.get('/login',(req, res) => {
-    res.render('user/login');
-})
-
-router.post('/login',passport.authenticate('local', {  failureRedirect: '/' }),async(req, res) => {
-    
-    const redirectUrl = req.session.returnTo || '/user/profile';
-    delete req.session.returnTo;
-    res.redirect(redirectUrl);
+router.post('/login',passport.authenticate('local'),async(req, res) => {
+    try{
+    res.send("Logged In");
+    }
+    catch(e){
+        res.send(e);
+        console.log(e)
+    }
 })
 
 router.get('/logout',isLoggedIn,async(req, res) => {
     req.logout();
-    // req.session.destroy();
-    res.redirect('/');
+    res.send("Logged out")
+   
+})
+router.get('/',async(req,res)=>{
+    const user = await req.user;
+    if(user){
+        res.send(user)
+    }else{
+        res.send("Please LogIn")
+    }
+    
 })
 
-router.get('/edit/:id',isLoggedIn,async(req,res)=>{
-    const user = await req.user;
-    const {id} = req.params
-    res.render('user/edit',{user,id})
-})
-router.put('/edit/:id',upload.single('image'),async(req,res)=>{
+router.put('/edit/:id',isLoggedIn,upload.single('image'),async(req,res)=>{
     try{     
     const {id} = req.params;
     const {username,session,linkedIn,insta,facebook,email,bio} = req.body;
@@ -72,15 +76,14 @@ router.put('/edit/:id',upload.single('image'),async(req,res)=>{
         }
      }
     await user.save();
-    res.redirect('/user/profile')
+    res.send(user)
 } catch (e) {
-    console.log(e)
-    res.redirect('/user/profile');
+   res.send(e)
 }
 })
 router.delete('/delete/:id',isLoggedIn,async(req,res)=>{
     const {id} = req.params;
     await User.findByIdAndDelete(id);
-    res.redirect('/')
+    res.send("Account Deleted")
 })
 module.exports = router;

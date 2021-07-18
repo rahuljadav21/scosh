@@ -16,16 +16,7 @@ const storage = new CloudinaryStorage({
     }
 });
 
-const blogImages = new CloudinaryStorage({
-    cloudinary,
-    params: {
-        folder: 'blogs',
-        allowedFormats: ['jpeg', 'png', 'jpg']
-    }
-});
-
 module.exports = {
     cloudinary,
-    storage,
-    blogImages
+    storage
 }

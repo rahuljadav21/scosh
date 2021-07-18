@@ -5,8 +5,6 @@ const connectDB = require('./config/db')
 const passport  = require('passport');
 const session = require('express-session');
 const LocalStrategy = require('passport-local')
-const ejs = require('ejs');
-const methodoverride = require('method-override');
 const path = require('path');
 const MongoStore  = require('connect-mongo');
 const User = require('./models/user')
@@ -21,13 +19,8 @@ dotenv.config({path: './config/config.env'})
 connectDB()
 
 //common middleware
-app.set('view engine','ejs');
-app.set('views',path.join(__dirname,'views'));
+
 app.use(express.urlencoded({extended:true}));
-app.use(methodoverride('_method'))
-app.use(express.static(path.join(__dirname,'public')));
-
-
 
 //session configuration
 const sessionConfig = {
@@ -62,10 +55,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //routes
-app.get('/',(req,res)=>{
-    
-    res.render('home')
-})
+
 app.use('/user',userRoutes);
 app.use('/blogs',blogRoutes);
 app.use('/events',eventRoutes);
