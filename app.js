@@ -13,13 +13,14 @@ const blogRoutes = require('./routes/blogs');
 const eventRoutes = require('./routes/events')
 const workshopRoutes = require('./routes/workshop')
 const PORT = process.env.PORT||4000
+const cors = require('cors')
 //load config
 dotenv.config({path: './config/config.env'})
 //connecting to database
 connectDB()
 
 //common middleware
-
+app.use(cors());
 app.use(express.urlencoded({extended:true}));
 
 //session configuration
