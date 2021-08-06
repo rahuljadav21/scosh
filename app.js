@@ -24,36 +24,36 @@ app.use(cors());
 app.use(express.urlencoded({extended:true}));
 
 //session configuration
-const sessionConfig = {
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URI,
-      touchAfter : 24*3600,
-      secret:'thisshouldbeabettersecret!'
-    }),
-    name: 'session',
-    secret : 'thisshouldbeabettersecret!',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        httpOnly: true,
-        // secure: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
-    }
-  }
-  app.use(session(sessionConfig));
-  app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
-    next();
-})
+// const sessionConfig = {
+//     store: MongoStore.create({
+//       mongoUrl: process.env.MONGO_URI,
+//       touchAfter : 24*3600,
+//       secret:'thisshouldbeabettersecret!'
+//     }),
+//     name: 'session',
+//     secret : 'thisshouldbeabettersecret!',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         httpOnly: true,
+//         // secure: true,
+//         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+//         maxAge: 1000 * 60 * 60 * 24 * 7
+//     }
+//   }
+//   app.use(session(sessionConfig));
+//   app.use((req, res, next) => {
+//     res.locals.currentUser = req.user;
+//     next();
+// })
 
-//passport congfiguration
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
+// //passport congfiguration
+// app.use(passport.initialize());
+// app.use(passport.session());
+// passport.use(new LocalStrategy(User.authenticate()));
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 //routes
 

@@ -4,5 +4,6 @@
 /.pnp.js
 *.env
 views/
-
+config.env
+/.env
 /config/config.env
