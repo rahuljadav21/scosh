@@ -57,7 +57,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //routes
 
-app.use('/user',userRoutes);
+//app.use('/user',userRoutes);
 app.use('/blogs',blogRoutes);
 app.use('/events',eventRoutes);
 app.use('/workshops',workshopRoutes);

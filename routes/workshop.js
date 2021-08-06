@@ -5,13 +5,30 @@ const Workshop = require('../models/workshop');
 
 router.get('/', async (req, res) => {
    try{
-      const workshops = await Workshop.find({});
-      res.send(workshops)
+   let {page} = req.query;
+   if(!page){
+      page = 1;
    }
+   const w = await Workshop.find({});
+   const workshops = w.reverse().slice((page-1)*8,page*8);
+   res.send(workshops)}
    catch(e){
       res.send(e)
-   }   
- })
+   }
+})
+
+router.get('/recent', async (req, res) => {
+   try{
+   const blogs = await Blog.find({});
+
+   const recent_blogs = blogs.sort(function(){
+      return new Date().now - new Date(100000000000);
+    }).reverse().slice(0,5);
+   res.send(recent_blogs)}
+   catch(e){
+      res.send(e)
+   }
+})
 
  router.post('/',isLoggedIn,isAdmin,async (req, res) => {
    try{

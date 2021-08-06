@@ -5,13 +5,27 @@ const Event = require('../models/events');
 
 router.get('/', async (req, res) => {
    try{
-      const events = await Event.find({});
-      res.send(events)     
-   }
+   let {page} = req.query
+   const e = await Event.find({});
+   const events = e.reverse().slice((page-1)*8,page*8);
+   res.send(events)}
    catch(e){
       res.send(e)
    }
- })
+})
+
+router.get('/recent', async (req, res) => {
+   try{
+   const events = await Blog.find({});
+
+   const recent_events = events.sort(function(){
+      return new Date().now - new Date(100000000000);
+    }).reverse().slice(0,5);
+   res.send(recent_events)}
+   catch(e){
+      res.send(e)
+   }
+})
  
  router.post('/',isLoggedIn,isAdmin,async (req, res) => {
    try{
