@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const {isLoggedIn,isAdmin} = require('../middleware')
 const Event = require('../models/events');
 
 router.get('/', async (req, res) => {
@@ -27,7 +26,7 @@ router.get('/recent', async (req, res) => {
    }
 })
  
- router.post('/',isLoggedIn,isAdmin,async (req, res) => {
+ router.post('/',async (req, res) => {
    try{
       const event = new Event({
          name: req.body.name,
@@ -57,7 +56,7 @@ router.get('/recent', async (req, res) => {
    }
  })
 
- router.put('/edit/:id',isLoggedIn,isAdmin,async (req, res) => {
+ router.put('/edit/:id',async (req, res) => {
    try{
       const { id } = req.params;
       const event = await Event.findByIdAndUpdate(id, {
@@ -74,7 +73,7 @@ router.get('/recent', async (req, res) => {
       res.send(e)
    }
  })
- router.delete('/delete/:id',isLoggedIn,isAdmin,async(req,res)=>{
+ router.delete('/delete/:id',async(req,res)=>{
    try{
       const {id} =req.params 
       await Event.findByIdAndDelete(id);

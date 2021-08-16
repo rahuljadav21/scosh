@@ -2,7 +2,6 @@ const express = require('express');
 
 const Blog = require('../models/blog');
 const router = express.Router();
-const {isLoggedIn,isAdmin} = require('../middleware')
 const multer = require('multer')
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
@@ -36,7 +35,7 @@ router.get('/recent', async (req, res) => {
    }
 })
 
-router.post('/',isLoggedIn,isAdmin,upload.array('images'),async (req, res) => {
+router.post('/',upload.array('images'),async (req, res) => {
    try{
       const blog = new Blog({
          title: req.body.title,
@@ -64,7 +63,7 @@ router.get('/:id',async (req, res) => {
    }
 })
 
-router.get('/edit/:id',isLoggedIn,isAdmin,async (req, res) => {
+router.get('/edit/:id',async (req, res) => {
    try{ 
    const { id } = req.params;
    const blog = await Blog.findById(id);
@@ -73,7 +72,7 @@ router.get('/edit/:id',isLoggedIn,isAdmin,async (req, res) => {
       res.send(e)
    }
 })
-router.put('/edit/:id',isLoggedIn,isAdmin,upload.array('images'),async (req, res) => {
+router.put('/edit/:id',upload.array('images'),async (req, res) => {
    try{
    const { id } = req.params;
    const blog = await Blog.findByIdAndUpdate(id, {
@@ -100,7 +99,7 @@ router.put('/edit/:id',isLoggedIn,isAdmin,upload.array('images'),async (req, res
    res.send(e)
 }
 })
-router.delete('/delete/:id',isLoggedIn,isAdmin,async(req,res)=>{
+router.delete('/delete/:id',async(req,res)=>{
    try{
    const {id} =req.params 
    await Blog.findByIdAndDelete(id);}

@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const {isLoggedIn,isAdmin} = require('../middleware')
 const Workshop = require('../models/workshop');
 
 router.get('/', async (req, res) => {
@@ -30,7 +29,7 @@ router.get('/recent', async (req, res) => {
    }
 })
 
- router.post('/',isLoggedIn,isAdmin,async (req, res) => {
+ router.post('/',async (req, res) => {
    try{
       const workshop = new Workshop({
          name: req.body.name,
@@ -61,7 +60,7 @@ router.get('/recent', async (req, res) => {
    }   
  })
 
- router.put('/edit/:id',isLoggedIn,isAdmin,async (req, res) => {
+ router.put('/edit/:id',async (req, res) => {
    try{
       const { id } = req.params;
       const workshop = await Workshop.findByIdAndUpdate(id, {
@@ -80,7 +79,7 @@ router.get('/recent', async (req, res) => {
    }
  
  })
- router.delete('/delete/:id',isLoggedIn,isAdmin,async(req,res)=>{
+ router.delete('/delete/:id',async(req,res)=>{
    try{
       const {id} =req.params 
       await Workshop.findByIdAndDelete(id);
