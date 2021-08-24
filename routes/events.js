@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Event = require('../models/events');
+const multer = require('multer')
+const { storage } = require('../cloudinary');
+const upload =  multer({ storage });
+const { cloudinary } = require("../cloudinary");
 
 router.get('/', async (req, res) => {
    try{
@@ -26,16 +30,19 @@ router.get('/recent', async (req, res) => {
    }
 })
  
- router.post('/',async (req, res) => {
+ router.post('/',upload.single('image'),async(req, res) => {
    try{
       const event = new Event({
          name: req.body.name,
-         vanue: req.body.vanue,
-         author: req.body.author,
-         date :req.body.date,
+         description : req.body.description,
          register : req.body.register 
         
       })
+      if(req.file){
+         event.image = {
+             url:req.file.path,
+             filename:req.file.filename
+         }}
       await event.save()
       res.send(event)
 
@@ -56,16 +63,21 @@ router.get('/recent', async (req, res) => {
    }
  })
 
- router.put('/edit/:id',async (req, res) => {
+ router.put('/edit/:id',upload.single('image'),async (req, res) => {
    try{
       const { id } = req.params;
       const event = await Event.findByIdAndUpdate(id, {
         name: req.body.name,
-         vanue: req.body.vanue,
-         author: req.body.author,
-         date :req.body.date,
-         register : req.body.register 
+        description : req.body.description,
+        register : req.body.register 
       })
+      if(req.file){
+         await cloudinary.uploader.destroy(event.image);
+         event.image = {
+             url:req.file.path,
+             filename:req.file.filename
+         }
+      }
       await event.save()
       res.send(event)
    }

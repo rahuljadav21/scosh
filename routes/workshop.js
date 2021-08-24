@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Workshop = require('../models/workshop');
+const multer = require('multer')
+const { storage } = require('../cloudinary');
+const upload =  multer({ storage });
+const { cloudinary } = require("../cloudinary");
 
 router.get('/', async (req, res) => {
    try{
@@ -29,17 +33,19 @@ router.get('/recent', async (req, res) => {
    }
 })
 
- router.post('/',async (req, res) => {
+ router.post('/',upload.single('image'),async (req, res) => {
    try{
       const workshop = new Workshop({
          name: req.body.name,
-         vanue: req.body.vanue,
-         author: req.body.author,
          description:req.body.description,
-         date :req.body.date,
          register : req.body.register 
         
       })
+      if(req.file){
+         workshop.image = {
+             url:req.file.path,
+             filename:req.file.filename
+         }}
       await workshop.save()
       res.send(workshop)
    }
@@ -60,17 +66,21 @@ router.get('/recent', async (req, res) => {
    }   
  })
 
- router.put('/edit/:id',async (req, res) => {
+ router.put('/edit/:id',upload.single('image'),async (req, res) => {
    try{
       const { id } = req.params;
       const workshop = await Workshop.findByIdAndUpdate(id, {
         name: req.body.name,
-         vanue: req.body.vanue,
-         author: req.body.author,
-         description:req.body.description,
-         date :req.body.date,
-         register : req.body.register 
+        description:req.body.description,
+        register : req.body.register 
       })
+      if(req.file){
+         await cloudinary.uploader.destroy(workshop.image);
+         workshop.image = {
+             url:req.file.path,
+             filename:req.file.filename
+         }
+      }
       await workshop.save()
      res.send(workshop)
    }
