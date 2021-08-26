@@ -9,6 +9,9 @@ const { cloudinary } = require("../cloudinary");
 router.get('/', async (req, res) => {
    try{
    let {page} = req.query
+   if(!page){
+      page = 1;
+   }
    const e = await Event.find({});
    const events = e.reverse().slice((page-1)*8,page*8);
    res.send(events)}
