@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= workshop.name  %> </title>
+</head>
+<body>
+    <h1><%= workshop.name %> <a href="/workshops/ejs">All workshops</a> </h1>
+    <div class="img">
+        <img src="<%= workshop.image.url%> " alt="">
+    </div>
+    <div>
+        <p><%=workshop.description%> </p>
+    </div>
+    <h4>Register Link :<%=workshop.register %> </h4>
+    <a href="/workshops/ejs/edit/<%=workshop._id%> ">Edit</a>
+    <form action="/workshops/ejs/delete/<%=workshop._id%>?_method=delete" method="post">
+    <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

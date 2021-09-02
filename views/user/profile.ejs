@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile</h1> <a href="/">Home</a>
+ <a href="/user/logout">logout</a>
+<div style="display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;">
+
+    <h4>username : <%=user.username%> </h4>
+    <h4>Session : <%=user.session%> </h4>
+    <h4>Image : <img style="height: 30vh;" src="<%=user.image.url%>" alt="">  </h4>
+    <h4>LinkedIn : <%=user.linkedIn%> </h4>
+    <h4>facebook : <%=user.facebook%> </h4>
+    <h4>email : <%=user.email%> </h4>
+    <h4>bio : <%=user.bio%> </h4>
+    <p><a href="/user/edit/<%=user._id%> ">Edit</a></p>
+
+    <form action="/user/delete/<%=user._id%>?_method=delete" method="post">
+    <button type="submit">Delete Account</button>
+    </form>
+
+    </div>
+</body>
+</html>
