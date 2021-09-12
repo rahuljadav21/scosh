@@ -8,11 +8,11 @@
 </head>
 <body>
     <h1><%= blog.title %> <a href="/blogs/ejs">All Blogs</a> </h1>
-    <p><%=blog.content%> </p>
+    <div> <pre><%=blog.content%></pre> </div>
      <% for(img of blog.images) {%> 
         <img style="height: 30vh;" src="<%=img.url%>" alt="">
      <%  }%> 
-    <h4>- By <%=blog.author%> </h4> 
+    <h4>- By <pre> <%=blog.author%></pre> </h4> 
     <a href="/blogs/ejs/edit/<%=blog._id%>">Edit</a>
     <form action="/blogs/ejs/delete/<%=blog._id%>?_method=delete" method="post">
     <button type="submit">Delete</button>

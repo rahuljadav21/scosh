@@ -15,6 +15,10 @@ const WorkShopSchema = new Schema({
         type: String,
         required: true
     },
+
+    meta :{
+      type : String,
+    },
     description: {
         type: String,
         required: true

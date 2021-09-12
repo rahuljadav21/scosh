@@ -126,7 +126,8 @@ router.get('/:id',async (req, res) => {
 //       const blog = new Blog({
 //          title: req.body.title,
 //          content: req.body.content,
-//          author: req.body.author
+//          author: req.body.author,
+
 //       })
 //       if(req.files){ 
 //       blog.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
@@ -145,7 +146,9 @@ router.get('/:id',async (req, res) => {
 //    const blog = await Blog.findByIdAndUpdate(id, {
 //       title: req.body.title,
 //       content: req.body.content,
-//       author: req.body.author
+//       author: req.body.author,
+
+
 //    })
 //    if(req.files){
 //       const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));

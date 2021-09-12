@@ -19,6 +19,7 @@ router.post('/ejs',upload.single('image'),async(req, res) => {
    try{
       const workshop = new Workshop({
          name: req.body.name,
+         meta : req.body.meta,
          description : req.body.description,
          register : req.body.register 
         
@@ -52,6 +53,7 @@ router.put('/ejs/edit/:id',upload.single('image'),async (req, res) => {
       const { id } = req.params;
       const workshop = await Workshop.findByIdAndUpdate(id, {
         name: req.body.name,
+        meta : req.body.meta,
         description : req.body.description,
         register : req.body.register 
       })
@@ -123,7 +125,8 @@ router.get('/:id',async(req, res) => {
 //       const workshop = new Workshop({
 //          name: req.body.name,
 //          description:req.body.description,
-//          register : req.body.register 
+//          register : req.body.register,
+//          meta : req.body.meta
         
 //       })
 //       if(req.file){
@@ -148,7 +151,8 @@ router.get('/:id',async(req, res) => {
 //       const workshop = await Workshop.findByIdAndUpdate(id, {
 //         name: req.body.name,
 //         description:req.body.description,
-//         register : req.body.register 
+//         register : req.body.register,
+//         meta : req.body.meta  
 //       })
 //       if(req.file){
 //          await cloudinary.uploader.destroy(workshop.image);

@@ -17,6 +17,7 @@
         align-items: center;
         justify-content: flex-start;">
     <label for="name"></label>Name :<input value="<%=workshop.name%>" type="text" name="name" id="name" required>
+    <label for="meta">meta :</label><textarea name="meta" id="meta" cols="30" rows="10"><%=workshop.meta%></textarea>
     <label for="description">Description :</label><textarea name="description" id="description" cols="30" rows="10"><%=workshop.description%></textarea>
     <img style="height: 20vh;" src="<%=workshop.image.url%>" alt="">
     <label for="image">Image</label> <input type="file" id="image" name="image">

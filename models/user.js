@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  meta :{
+    type : String,
+    required : true
+  },
   session: {
     type: String,
     required: true
