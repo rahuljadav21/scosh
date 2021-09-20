@@ -70,19 +70,14 @@ img.align-right {
     <h2>Create Blog</h2>
 
     <form action="/blogs/ejs" method="post" enctype="multipart/form-data" >
-        <div style="display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-content: center;
-        align-items: center;
-        justify-content: flex-start;">
-    <label for="title"></label>Title :<input type="text" name="title" id="title">
+        <div >
+    <label for="title"></label>Title :<input type="text" name="title" id="title"><br>
     <label for="content"></label>Content :  
     <!-- <textarea style="margin: 0px; height: 348px; width: 601px;" name="content" id="content" cols="30" rows="10"></textarea> -->
-    <textarea id="content" name="content"></textarea>
+    <textarea id="content" name="content"></textarea><br>
     
-    <label for="author"></label>author<input type="text" name="author" id="author">
-    <label for="Images">Images</label><input type="file" name="images" id="images">
+    <label for="author"></label>author<input type="text" name="author" id="author"><br>
+    <label for="Images">Images</label><input type="file" name="images" id="images"><br>
     <button type="submit">Create</button>
 </div>
     </form>
