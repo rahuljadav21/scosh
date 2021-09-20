@@ -12,6 +12,7 @@ const userRoutes = require('./routes/user');
 const blogRoutes = require('./routes/blogs');
 const eventRoutes = require('./routes/events')
 const workshopRoutes = require('./routes/workshop')
+const teamshopRoutes = require('./routes/team')
 const PORT = process.env.PORT||4000
 const cors = require('cors')
 
@@ -76,6 +77,7 @@ app.get('/',(req,res)=>{
 app.use('/blogs',blogRoutes);
 app.use('/events',eventRoutes);
 app.use('/workshops',workshopRoutes);
+app.use('/teams',teamshopRoutes);
 
 app.listen(PORT,()=>{
     console.log(`Listening on port ${PORT}`)

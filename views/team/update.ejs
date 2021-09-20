@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Member</title>
+</head>
+<body>
+    <h2>Update Member</h2>
+
+    <form action="/teams/ejs/edit/<%=member._id%>?_method=put" method="post" enctype="multipart/form-data">
+        <div style="display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+        justify-content: flex-start;">
+    <label for="name">Name :</label><input type="text" value="<%=member.name%>" name="name" id="name" required>
+    <label for="year">year :</label><input type="number" value="<%=member.year%>" name="year" id="year" required>
+    <label for="designation">designation :</label><input type="text" value="<%=member.designation%>" name="designation" id="designation" required>
+    <label for="facebook">facebook :</label><input type="text" value="<%=member.facebook%>" name="facebook" id="facebook" required>
+    <label for="insta">insta :</label><input type="text" value="<%=member.insta%>" name="insta" id="insta" required>
+    <label for="linkedin">linkedin :</label><input type="text" value="<%=member.linkedin%>" name="linkedin" id="linkedin" required>
+    <label for="twitter">twitter :</label><input type="text" value="<%=member.twitter %>" name="twitter" id="twitter" required>
+    <% if(member.image){ %> 
+        <img style="width: 35vh;" src="<%= member.image.url%> " alt="">
+        <% } %> 
+    <label for="image">Image</label> <input  type="file" id="image" name="image" >
+    <button type="submit">Edit</button>
+</div>
+    </form>
+   
+    
+</body>
+</html>

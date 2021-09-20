@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= member.name  %> </title>
+</head>
+<body>
+    <h1><%= member.name %> <a href="/teams/ejs">All members</a> </h1>
+    <div class="img">
+        <% if(member.image){ %> 
+        <img style="width: 35vh;" src="<%= member.image.url%> " alt="">
+        <% } %> 
+    </div>
+    <p>Name :<%= member.name %></p> 
+    <p>Designation :<%= member.designation %></p>
+    <p>Year :<%= member.year %></p>
+    <p>facebook :<%= member.facebook %></p>
+    <p>Insta :<%= member.insta %></p>
+    <p>LinkedIn :<%= member.linkedin %></p>
+    <p>Twitter :<%= member.twitter %></p>
+
+   
+    <a href="/teams/ejs/edit/<%=member._id%> ">Edit</a>
+    <form action="/teams/ejs/delete/<%=member._id%>?_method=delete" method="post">
+    <button type="submit">Delete</button>
+    </form>
+</body>
+</html>
