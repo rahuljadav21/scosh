@@ -21,6 +21,9 @@
     <label for="description">Description :</label><textarea name="description" id="description" cols="30" rows="10"><%=event.description%></textarea>
     <img style="height: 20vh;" src="<%=event.image.url%>" alt="">
     <label for="image">Image</label> <input type="file" id="image" name="image">
+    <label for="isOver">Is Over :</label> <input type="checkbox" name="isOver" id="isOver" <% if (event.isOver) { %>
+     checked
+    <% } %>>
     <label for="register"></label>Register here :<input type="text" value="<%=event.register %>" name="register" id="register" required>
     <button type="submit">Edit</button>
 </div>

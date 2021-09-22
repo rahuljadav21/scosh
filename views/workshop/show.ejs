@@ -9,12 +9,17 @@
 <body>
     <h1><%= workshop.name %> <a href="/workshops/ejs">All workshops</a> </h1>
     <div class="img">
-        <img src="<%= workshop.image.url%> " alt="">
+        <img style="height: 35vh;" src="<%= workshop.image.url%> " alt="">
     </div>
     <div>
         <p><%=workshop.meta%> </p>
         <p><%=workshop.description%> </p>
     </div>
+    <p>Is Over :<% if (workshop.isOver) { %>
+        Yes 
+       <% } else { %>
+            No 
+          <% } %> </p>
     <h4>Register Link :<%=workshop.register %> </h4>
     <a href="/workshops/ejs/edit/<%=workshop._id%> ">Edit</a>
     <form action="/workshops/ejs/delete/<%=workshop._id%>?_method=delete" method="post">

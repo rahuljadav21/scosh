@@ -29,7 +29,7 @@ router.post('/ejs',upload.single('image'),async(req, res) => {
          facebook : req.body.facebook,
          insta : req.body.insta,
          linkedin : req.body.linkedin,
-         twitter : req.body.twitter
+         email : req.body.email
       })
       if(req.file){
        member.image = {
@@ -66,7 +66,7 @@ router.put('/ejs/edit/:id',upload.single('image'),async (req, res) => {
          facebook : req.body.facebook,
          insta : req.body.insta,
          linkedin : req.body.linkedin,
-         twitter : req.body.twitter
+         email : req.body.email
       })
       if(req.file){
          await cloudinary.uploader.destroy(member.image)
@@ -123,7 +123,7 @@ router.post('/',upload.single('image'),async(req,res)=>{
           facebook : req.body.facebook,
           insta : req.body.insta,
           linkedin : req.body.linkedin,
-          twitter : req.body.twitter
+          email : req.body.email
        })
        if(req.file){
         member.image = {
@@ -149,7 +149,7 @@ router.put('/:id',upload.single('image'),async(req,res)=>{
           facebook : req.body.facebook,
           insta : req.body.insta,
           linkedin : req.body.linkedin,
-          twitter : req.body.twitter
+          email : req.body.email
        })
        if(req.file){
         await cloudinary.uploader.destroy(member.image)

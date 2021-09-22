@@ -17,12 +17,17 @@ router.get('/ejs/new',async (req, res) => {
 })
 router.post('/ejs',upload.single('image'),async(req, res) => {
    try{
+      let isOver;
+      if(req.body.isOver){
+         isOver = true;
+      }else{isOver=false}
+      
       const event = new Event({
          name: req.body.name,
          description : req.body.description,
          register : req.body.register,
-         meta : req.body.meta 
-        
+         meta : req.body.meta,
+         isOver : isOver         
       })
       if(req.file){
          event.image = {
@@ -50,12 +55,18 @@ router.get('/ejs/edit/:id',async(req,res)=>{
 })
 router.put('/ejs/edit/:id',upload.single('image'),async (req, res) => {
    try{
+      let isOver;
+      if(req.body.isOver){
+         isOver = true;
+      }else{isOver=false}
+
       const { id } = req.params;
       const event = await Event.findByIdAndUpdate(id, {
         name: req.body.name,
         description : req.body.description,
         register : req.body.register,
-        meta : req.body.meta 
+        meta : req.body.meta,
+        isOver :  isOver
       })
       if(req.file){
          await cloudinary.uploader.destroy(event.image);

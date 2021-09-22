@@ -17,11 +17,16 @@ router.get('/ejs/new',async (req, res) => {
 })
 router.post('/ejs',upload.single('image'),async(req, res) => {
    try{
+      let isOver;
+      if(req.body.isOver){
+         isOver = true;
+      }else{isOver=false}
       const workshop = new Workshop({
          name: req.body.name,
          meta : req.body.meta,
          description : req.body.description,
-         register : req.body.register 
+         register : req.body.register,
+         isOver : isOver 
         
       })
       if(req.file){
@@ -50,12 +55,17 @@ router.get('/ejs/edit/:id',async(req,res)=>{
 })
 router.put('/ejs/edit/:id',upload.single('image'),async (req, res) => {
    try{
+      let isOver;
+      if(req.body.isOver){
+         isOver = true;
+      }else{isOver=false}
       const { id } = req.params;
       const workshop = await Workshop.findByIdAndUpdate(id, {
         name: req.body.name,
         meta : req.body.meta,
         description : req.body.description,
-        register : req.body.register 
+        register : req.body.register,
+        isOver : isOver 
       })
       if(req.file){
          await cloudinary.uploader.destroy(workshop.image);
@@ -126,7 +136,7 @@ router.get('/:id',async(req, res) => {
 //          name: req.body.name,
 //          description:req.body.description,
 //          register : req.body.register,
-//          meta : req.body.meta
+//          meta : req.body.meta,isOver : req.body.isOver
         
 //       })
 //       if(req.file){
@@ -152,7 +162,7 @@ router.get('/:id',async(req, res) => {
 //         name: req.body.name,
 //         description:req.body.description,
 //         register : req.body.register,
-//         meta : req.body.meta  
+//         meta : req.body.meta ,isOver : req.body.isOver 
 //       })
 //       if(req.file){
 //          await cloudinary.uploader.destroy(workshop.image);

@@ -9,11 +9,16 @@
 <body>
     <h1><%= event.name %> <a href="/events/ejs">All events</a> </h1>
     <div class="img">
-        <img src="<%= event.image.url%> " alt="">
+        <img style="height: 35vh;" src="<%= event.image.url%> " alt="">
     </div>
     <div><p><%=event.meta%> </p>
         <p><%=event.description%> </p>
     </div>
+    <p>Is Over :<% if (event.isOver) { %>
+     Yes 
+    <% } else { %>
+         No 
+       <% } %> </p>
     <h4>Register Link :<%=event.register %> </h4>
     <a href="/events/ejs/edit/<%=event._id%> ">Edit</a>
     <form action="/events/ejs/delete/<%=event._id%>?_method=delete" method="post">

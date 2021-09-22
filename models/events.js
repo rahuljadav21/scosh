@@ -19,6 +19,9 @@ const EventSchema = new Schema({
       type : String,
       required : true
     },
+    isOver :{
+      type : Boolean,
+    },
 
     description :{
         type : String,

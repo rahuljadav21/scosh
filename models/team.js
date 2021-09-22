@@ -33,7 +33,7 @@ const memberSchema = new Schema({
     insta :{
         type :String,
     },
-    twitter :{
+    email :{
         type :String,
     },
 

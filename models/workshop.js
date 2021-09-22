@@ -15,6 +15,9 @@ const WorkShopSchema = new Schema({
         type: String,
         required: true
     },
+    isOver :{
+      type : Boolean,
+    },
 
     meta :{
       type : String,
