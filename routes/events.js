@@ -109,7 +109,7 @@ router.get('/', async (req, res) => {
 
 router.get('/recent', async (req, res) => {
    try{
-   const events = await event.find({});
+   const events = await Event.find({});
 
    const recent_events = events.sort(function(){
       return new Date().now - new Date(100000000000);
