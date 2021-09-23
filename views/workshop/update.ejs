@@ -19,8 +19,12 @@
     <label for="name"></label>Name :<input value="<%=workshop.name%>" type="text" name="name" id="name" required>
     <label for="meta">meta :</label><textarea name="meta" id="meta" cols="30" rows="10"><%=workshop.meta%></textarea>
     <label for="description">Description :</label><textarea name="description" id="description" cols="30" rows="10"><%=workshop.description%></textarea>
+    <% if (workshop.thumbnail) { %>
+        <img style="height: 35vh;" src="<%= workshop.thumbnail.url%> " alt="">
+       <% } %>
+    <label for="image">Thumbnail</label> <input  type="file" id="image" name="images" >
     <img style="height: 20vh;" src="<%=workshop.image.url%>" alt="">
-    <label for="image">Image</label> <input type="file" id="image" name="image">
+    <label for="image">Image</label> <input  type="file" id="image" name="images"  >
     <label for="isOver">Is Over :</label> <input type="checkbox" name="isOver" id="isOver" <% if (workshop.isOver) { %>
         checked
        <% } %>>

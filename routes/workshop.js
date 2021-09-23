@@ -15,7 +15,7 @@ router.get('/ejs', async (req, res) => {
 router.get('/ejs/new',async (req, res) => {
    res.render('workshop/new')
 })
-router.post('/ejs',upload.single('image'),async(req, res) => {
+router.post('/ejs',upload.array('images'),async(req, res) => {
    try{
       let isOver;
       if(req.body.isOver){
@@ -29,11 +29,16 @@ router.post('/ejs',upload.single('image'),async(req, res) => {
          isOver : isOver 
         
       })
-      if(req.file){
+      if(req.files){
+         workshop.thumbnail = {
+            url:req.files[0].path,
+            filename:req.files[0].filename
+        }
          workshop.image = {
-             url:req.file.path,
-             filename:req.file.filename
+             url:req.files[1].path,
+             filename:req.files[1].filename
          }}
+       
       await workshop.save()
       res.redirect(`/workshops/ejs`)
 
@@ -53,7 +58,7 @@ router.get('/ejs/edit/:id',async(req,res)=>{
    const workshop = await Workshop.findById(id);
    res.render('workshop/update',{workshop});
 })
-router.put('/ejs/edit/:id',upload.single('image'),async (req, res) => {
+router.put('/ejs/edit/:id',upload.array('images'),async (req, res) => {
    try{
       let isOver;
       if(req.body.isOver){
@@ -67,19 +72,28 @@ router.put('/ejs/edit/:id',upload.single('image'),async (req, res) => {
         register : req.body.register,
         isOver : isOver 
       })
-      if(req.file){
+      
+      if(req.files.length !=0){
+        
+         await cloudinary.uploader.destroy(workshop.thumbnail);
          await cloudinary.uploader.destroy(workshop.image);
-         workshop.image = {
-             url:req.file.path,
-             filename:req.file.filename
-         }
+        
+       
+       workshop.thumbnail = {
+          url:req.files[0].path,
+          filename:req.files[0].filename
       }
+       workshop.image = {
+           url:req.files[1].path,
+           filename:req.files[1].filename
+       }}
       await workshop.save()
       
       res.redirect(`/workshops/ejs/${id}`)
    }
    catch(e){
       res.send(e)
+      console.log("Err")
    }
  })
  router.delete('/ejs/delete/:id',async(req,res)=>{

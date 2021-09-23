@@ -8,6 +8,13 @@
 </head>
 <body>
     <h1><%= workshop.name %> <a href="/workshops/ejs">All workshops</a> </h1>
+    Thumbnail : 
+    <% if (workshop.thumbnail) { %>
+        <img style="height: 35vh;" src="<%= workshop.thumbnail.url%> " alt="">
+       <% }else { %>
+      <h1>No Thumbnail</h1>
+       <%} %>
+       
     <div class="img">
         <img style="height: 35vh;" src="<%= workshop.image.url%> " alt="">
     </div>

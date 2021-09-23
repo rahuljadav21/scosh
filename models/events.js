@@ -27,6 +27,7 @@ const EventSchema = new Schema({
         type : String,
         required : true
     },
+    thumbnail:{type:ImageSchema},
     image:{type:ImageSchema},
     register :{
            type : String,

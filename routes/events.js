@@ -15,13 +15,13 @@ router.get('/ejs', async (req, res) => {
 router.get('/ejs/new',async (req, res) => {
    res.render('event/new')
 })
-router.post('/ejs',upload.single('image'),async(req, res) => {
+router.post('/ejs',upload.array('images'),async(req, res) => {
    try{
       let isOver;
       if(req.body.isOver){
          isOver = true;
       }else{isOver=false}
-      
+      //console.log(req.files)
       const event = new Event({
          name: req.body.name,
          description : req.body.description,
@@ -29,11 +29,16 @@ router.post('/ejs',upload.single('image'),async(req, res) => {
          meta : req.body.meta,
          isOver : isOver         
       })
-      if(req.file){
+      if(req.files){
+         event.thumbnail = {
+            url:req.files[0].path,
+            filename:req.files[0].filename
+        }
          event.image = {
-             url:req.file.path,
-             filename:req.file.filename
+             url:req.files[1].path,
+             filename:req.files[1].filename
          }}
+       
       await event.save()
       res.redirect(`/events/ejs`)
 
@@ -53,7 +58,7 @@ router.get('/ejs/edit/:id',async(req,res)=>{
    const event = await Event.findById(id);
    res.render('event/update',{event});
 })
-router.put('/ejs/edit/:id',upload.single('image'),async (req, res) => {
+router.put('/ejs/edit/:id',upload.array('images'),async (req, res) => {
    try{
       let isOver;
       if(req.body.isOver){
@@ -68,13 +73,21 @@ router.put('/ejs/edit/:id',upload.single('image'),async (req, res) => {
         meta : req.body.meta,
         isOver :  isOver
       })
-      if(req.file){
-         await cloudinary.uploader.destroy(event.image);
+      if(req.files.length !=0){
+        
+           await cloudinary.uploader.destroy(event.thumbnail);
+           await cloudinary.uploader.destroy(event.image);
+          
+         
+         event.thumbnail = {
+            url:req.files[0].path,
+            filename:req.files[0].filename
+        }
          event.image = {
-             url:req.file.path,
-             filename:req.file.filename
-         }
-      }
+             url:req.files[1].path,
+             filename:req.files[1].filename
+         }}
+         //console.log(event.thumbnail)
       await event.save()
       res.redirect(`/events/ejs/${id}`)
    }
